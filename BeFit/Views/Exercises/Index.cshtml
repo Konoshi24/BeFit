@@ -1,0 +1,65 @@
+﻿@model IEnumerable<BeFit.Models.Exercise>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Ćwiczenia w sesji</h1>
+
+<p>
+    <a asp-action="Create">Dodaj nowe ćwiczenie w sesji</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Weight)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumOfSeries)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumOfReps)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExerciseType)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Session)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Weight)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumOfSeries)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumOfReps)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExerciseType.Name)
+            </td>
+            <td>
+                    @Html.DisplayFor(modelItem => item.Session.Start) @Html.DisplayFor(modelItem => item.Session.End)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.User.UserName)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id">Edytuj</a> |
+                <a asp-action="Details" asp-route-id="@item.Id">Szczegóły</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id">Usuń</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
